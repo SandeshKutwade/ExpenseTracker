@@ -6,10 +6,13 @@ expenseForm.addEventListener("submit",function(event) {
     const description = document.getElementById("description").value;
     const catagory = document.getElementById("category").value;
 
-    console.log(amount)
-    console.log(description)
-    console.log(catagory)
+    const expense = {
+        amount: amount,
+        description:description,
+        catagory: catagory
+    };
 
+    console.log(expense)
 })
 
 
@@ -22,4 +25,6 @@ expenseForm.addEventListener("submit",function(event) {
 //  console.log(amount)
     // console.log(description)
     // console.log(catagory)
+
+
 
