@@ -16,12 +16,22 @@ function displayExpenses() {
         <p>Amount: ₹${expense.amount}</p>
         <p>Description: ${expense.description}</p>
         <p>Category: ${expense.category}</p> 
+        <button onclick = "deleteExpense(${expense.id})"> Delete </button>
             
         <hr>
         `; // this is template iteral
         expenseList.appendChild(expenseItem); // takes div which we created and put that inside. 
     });
 }
+
+function deleteExpense(id){
+    const expensIndex = expenses.findIndex(function(expense) {
+        return expense.id === id;
+    });
+    expenses.splice(expensIndex,1);
+    displayExpenses();
+}
+
 
 
 expenseForm.addEventListener("submit",function(event) {
@@ -32,8 +42,9 @@ expenseForm.addEventListener("submit",function(event) {
     const catagory = document.getElementById("category").value;
 
     const expense = {
+        id: Date.now(), // date gives us current timestamp in miliseconds. so its automatically become unique
         amount: amount,
-        description:description,
+        description: description,
         catagory: catagory
     };
 
@@ -74,3 +85,28 @@ expenseForm.addEventListener("submit",function(event) {
 // User --->  HTML form --->  submit Event --->  Get input values --->  create JS object ---> expeses pushes to array format ---> 
 // expense becomes list [] ---> displat expenses ---> iterate over all the expeses [foreach] ---> 
 // create temp HTML div to show expenses ---> Webpage. 
+
+
+
+
+//  when i click on the delete button how js will get to know about which entry or data should be delete. for that we will give ID on every 
+// expenses 
+// currently :- 
+// const expense = {
+
+        //     amount: amount,
+
+        //     description: description,
+
+        //     category: category
+
+        // };
+
+// make it :- 
+
+        // const expense = {
+        //     id: Date.now(),
+        //     amount: amount,
+        //     description: description,
+        //     category: category
+        // };
