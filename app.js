@@ -65,3 +65,12 @@ expenseForm.addEventListener("submit",function(event) {
 // to handle that we need to record expenses forever  thats array of objects. 
 
 // js array ----> localStorage -----> page refresh -----> js Array -----> didsplay on page 
+
+
+
+
+// what we have build till now --- >
+
+// User --->  HTML form --->  submit Event --->  Get input values --->  create JS object ---> expeses pushes to array format ---> 
+// expense becomes list [] ---> displat expenses ---> iterate over all the expeses [foreach] ---> 
+// create temp HTML div to show expenses ---> Webpage. 
