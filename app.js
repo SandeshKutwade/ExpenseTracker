@@ -1,8 +1,33 @@
+const expenses = [];
+
 const expenseForm = document.getElementById("expenseForm");
+const expenseList = document.getElementById("ExpensList")
+
+
+function displayExpenses() {
+    expenseList.innerHTML="";   // here we are clearing the display area. so that the duplicate record wont see
+
+    // clear ----> loop through data ----> rebuild display 
+
+    expenses.forEach(function(expense){ // we have array in obj format so here we uses foreach to travel all the elements one by one
+        const expenseItem = document.createElement("div"); // here we are telling to js to create a new div [temp] for the expenses only
+
+        expenseItem.innerHTML =`
+        <p>Amount: ₹${expense.amount}</p>
+        <p>Description: ${expense.description}</p>
+        <p>Category: ${expense.category}</p> 
+            
+        <hr>
+        `; // this is template iteral
+        expenseList.appendChild(expenseItem); // takes div which we created and put that inside. 
+    });
+}
+
+
 expenseForm.addEventListener("submit",function(event) {
     event.preventDefault();
 
-    const amount = document.getElementById("amount").value;
+    const amount = Number(document.getElementById("amount").value);
     const description = document.getElementById("description").value;
     const catagory = document.getElementById("category").value;
 
@@ -12,8 +37,14 @@ expenseForm.addEventListener("submit",function(event) {
         catagory: catagory
     };
 
-    console.log(expense)
-})
+    expenses.push(expense);
+
+    // console.log(expense);
+
+    displayExpenses(); // calling function
+
+});
+
 
 
 // till here we achive form submission / preventing page to refresh or redirect or reload / 
@@ -28,3 +59,9 @@ expenseForm.addEventListener("submit",function(event) {
 
 
 
+// we uses the values so even if there a numerical data will also treat as string  and with string format we cant perform calculations 
+
+// even after doing this there is one problem that is as soon as the func completed the values will be desapeears which we dont want
+// to handle that we need to record expenses forever  thats array of objects. 
+
+// js array ----> localStorage -----> page refresh -----> js Array -----> didsplay on page 
